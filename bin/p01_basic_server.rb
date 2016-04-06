@@ -7,8 +7,8 @@ app = Proc.new do |env|
   res['Content-Type'] = 'text/html'
   path = req.path
 
-  res.write(path)
-  res.finish
+  res.write(env)
+  res.finish #returns rack standard format
 end
 
 
