@@ -7,7 +7,7 @@ class ControllerBase #equivalent to Rails' ActionController::Base - MAM
   attr_reader :req, :res, :params
 
   # Setup the controller
-  def initialize(req, res)
+  def initialize(req, res, params = {})
     @req = req
     @res = res
   end
@@ -38,7 +38,6 @@ class ControllerBase #equivalent to Rails' ActionController::Base - MAM
     @res.write(content) #append the body of the response - MAM
     session.store_session(@res) #store session info into cookie after response is built
 
-
     @already_built_response = true
   end
 
@@ -61,5 +60,7 @@ class ControllerBase #equivalent to Rails' ActionController::Base - MAM
 
   # use this with the router to call action_name (:index, :show, :create...)
   def invoke_action(name)
+    send(name)
+    render(name) unless already_built_response?
   end
 end

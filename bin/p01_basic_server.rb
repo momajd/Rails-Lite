@@ -5,9 +5,8 @@ app = Proc.new do |env|
   res = Rack::Response.new
 
   res['Content-Type'] = 'text/html'
-  path = req.path
 
-  res.write(env)
+  res.write(req.path) #puts things into the response
   res.finish #returns rack standard format
 end
 
