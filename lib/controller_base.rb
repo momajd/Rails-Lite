@@ -21,7 +21,7 @@ class ControllerBase #equivalent to Rails' ActionController::Base - MAM
   def redirect_to(url)
     raise "Already built response" if already_built_response?
 
-    @res["location"] = url
+    @res["Location"] = url
     @res.status = 302
     session.store_session(@res) #store session info into cookie after response is built
 
