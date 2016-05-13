@@ -44,7 +44,7 @@ class ControllerBase #equivalent to Rails' ActionController::Base - MAM
   # use ERB and binding to evaluate templates
   # pass the rendered html to render_content
   def render(template_name)
-    controller_name = self.class.name.underscore #underscore is from Active Support
+    controller_name = self.class.name.underscore #underscore is from active_support
     path = "views/#{controller_name}/#{template_name.to_s}.html.erb"
 
     template = File.read(path)
