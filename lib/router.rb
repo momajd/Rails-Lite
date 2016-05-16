@@ -44,10 +44,6 @@ class Router
     end
   end
 
-  # def get(pattern, controller_class, action_name)
-  #   add_route(pattern, :get, controller_class, action_name)
-  # end
-
   def match(req)
     @routes.find {|route| route.matches?(req)}
   end
