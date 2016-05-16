@@ -24,7 +24,7 @@ Rack::Server.start(
 
 ###ControllerBase
 
-`ControllerBase` has similar functionality to Rails' `ActiveController::Base`. The `ControllerBase` class initializes with request and response objects as arguments. Similarly to `ActiveController::Base`, it has `render` and `redirect_to` methods. The `render` function utilizes the uncommonly used `binding` method to capture the variables in the controller class.
+`ControllerBase` has similar functionality to Rails' `ActiveController::Base`. The `ControllerBase` class initializes with request and response objects as arguments. Similarly to `ActiveController::Base`, it has `render` and `redirect_to` methods. The `render` function utilizes the uncommonly used `binding` method to capture the instance variables used in the template that belong to the controller class. 
 
 ```Ruby
 def render(template_name)
