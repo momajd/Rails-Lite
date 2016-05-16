@@ -24,7 +24,19 @@ Rack::Server.start(
 
 ###ControllerBase
 
-`ControllerBase` has similar functionality to Rails' `ActiveController::Base`. The `ControllerBase` class initializes with request and response objects as arguments. Similarly to `ActiveController::Base`, it has `render` and `redirect_to` methods.
+`ControllerBase` has similar functionality to Rails' `ActiveController::Base`. The `ControllerBase` class initializes with request and response objects as arguments. Similarly to `ActiveController::Base`, it has `render` and `redirect_to` methods. The `render` function utilizes the uncommonly used `binding` method to capture the variables in the controller class.
+
+```Ruby
+def render(template_name)
+  controller_name = self.class.name.underscore
+  path = "views/#{controller_name}/#{template_name.to_s}.html.erb"
+
+  template = File.read(path)
+  erb_template = ERB.new(template).result(binding)
+
+  render_content(erb_template, 'text/html')
+end
+```
 
 A `Session` class was also developed so that a cookie could be attached to the response and stored on the client's browser. Rack's `set_cookie` method was used for this.
 
